@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Venda {
 
 	private static int numVenda = 0;
-	private ArrayList<Item> itens = new ArrayList<>();
+	private ArrayList<ItemVenda> itens = new ArrayList<>();
 	private int produtosDiferentes;
 
 	public Venda() {
@@ -17,8 +17,7 @@ public class Venda {
 	}
 	
 	@Override
-	public String toString() {
-		
+	public String toString() {	
 		return "";
 	}
 

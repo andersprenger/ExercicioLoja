@@ -1,6 +1,6 @@
 public class Produto {
 	
-	private final EstoqueDoProduto estoque;
+	private final ItemEstoque estoque;
 	private int codigo;
 	private String descricao;
 	private double preco;
@@ -9,15 +9,11 @@ public class Produto {
 		this.codigo = codigo;
 		this.descricao = descricao;
 		this.preco = preco;
-		this.estoque = new EstoqueDoProduto(this, qtdeEstoque);
+		this.estoque = new ItemEstoque(this, qtdeEstoque);
 	}
 
 	public String getDescricao() {
 		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
 	}
 
 	public double getPreco() {
@@ -36,8 +32,12 @@ public class Produto {
 		return this.estoque.getQuantidade();
 	}
 	
-	public EstoqueDoProduto getEstoqueDoProduto() {
+	public ItemEstoque getEstoqueDoProduto() {
 		return estoque;
+	}
+
+	public String toLineFile() {
+		return codigo + "," + descricao + "," + preco;
 	}
 
 }

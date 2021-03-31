@@ -1,27 +1,30 @@
-/**
- * ItemVenda
- */
 public class ItemVenda {
 
-    private Produto produto;
-    private int quantidade;
-    private float precoDeVenda;
-    
-    public ItemVenda(Produto produto, int quantidade, float precoDeVenda) {
-        this.produto = produto;
-        this.quantidade = quantidade;
-        this.precoDeVenda = precoDeVenda;
-    }
+	private int quantidade;
+	private Produto produto;
+	private double precoUnitario;
+	
+	public ItemVenda(Produto produto, int qtde) {
+		this.produto = produto;
+		this.quantidade = qtde;
+		this.precoUnitario = this.produto.getPreco();
+	}
+	
+	public int getQuantidade() {
+		return this.quantidade;
+	}
+	
+	public double getPrecoUnitario() {
+		return this.precoUnitario;
+	}
+	
+	public double getTotal() {
+		return quantidade * precoUnitario;
+	}
+	
+	public void decrementaProdutoEstoque() {
+		produto.getEstoqueDoProduto().decrementaProdutoDoEstoque(quantidade);
+	}
 
-    public Produto getProduto() {
-        return produto;
-    }
 
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public float getPrecoDeVenda() {
-        return precoDeVenda;
-    }
 }

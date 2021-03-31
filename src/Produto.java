@@ -1,31 +1,43 @@
-/**
- * Produto
- */
-public abstract class Produto {
+public class Produto {
+	
+	private final ItemEstoque estoque;
+	private int codigo;
+	private String descricao;
+	private double preco;
 
-    private int codigo;
-    private String descricao;
-    private float precoUnitario;
+	public Produto(int codigo, String descricao, double preco, int qtdeEstoque) {
+		this.codigo = codigo;
+		this.descricao = descricao;
+		this.preco = preco;
+		this.estoque = new ItemEstoque(this, qtdeEstoque);
+	}
 
-    public Produto(int codigo, String descricao, float precoUnitario) {
-        this.codigo = codigo;
-        this.descricao = descricao;
-        this.precoUnitario = precoUnitario;
-    }
+	public String getDescricao() {
+		return descricao;
+	}
 
-    public int getCodigo() {
-        return codigo;
-    }
+	public double getPreco() {
+		return preco;
+	}
 
-    public String getDescricao() {
-        return descricao;
-    }
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
 
-    public float getPrecoUnitario() {
-        return precoUnitario;
-    }
+	public int getCodigo() {
+		return codigo;
+	}
+	
+	public int getQuantidadeEmEstoque() {
+		return this.estoque.getQuantidade();
+	}
+	
+	public ItemEstoque getEstoqueDoProduto() {
+		return estoque;
+	}
 
-    public void setPrecoUnitario(float precoUnitario) {
-        this.precoUnitario = precoUnitario;
-    }
+	public String toLineFile() {
+		return codigo + "," + descricao + "," + preco;
+	}
+
 }

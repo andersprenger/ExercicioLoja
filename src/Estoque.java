@@ -28,7 +28,7 @@ public class Estoque {
 		return estoque.add(item);
 	}
 
-	public ItemEstoque getItem(Produto produto) {
+	public ItemEstoque getItem(Produto produto) throws NullPointerException {
         for (ItemEstoque item : estoque) {
             if (item.getProduto().getCodigo() == produto.getCodigo()) {
                 return item;
@@ -61,14 +61,13 @@ public class Estoque {
            while (sc.hasNext()){
                String linha = sc.nextLine();
 			   String [] linhaSplitada = linha.split(",");
-			   Produto p = new Produto(
+			   Produto produto = new Produto(
 			           Integer.parseInt(linhaSplitada[0]),
                        linhaSplitada[1],
-                       Double.parseDouble(linhaSplitada[2]),
-                       Integer.parseInt(linhaSplitada[3]
-                       ));
-			   //O item a ser adicionado foi criado no construtor do produto instanciado acima.
-			   addItem(p.getEstoqueDoProduto());
+                       Double.parseDouble(linhaSplitada[2])
+                       );
+			   ItemEstoque item = new ItemEstoque(produto, Integer.parseInt(linhaSplitada[3]));
+			   estoque.add(item);
            }
         } catch (IOException x) {
             System.err.format("Erro de E/S: %s%n", x);

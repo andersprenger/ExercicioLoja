@@ -8,12 +8,12 @@ public class Venda {
 
 	private ArrayList<ItemVenda> itensVenda;
 
-	public Venda(int numero, float desconto, float imposto, float valorPago) {
+	public Venda(int numero, float desconto, float imposto, float valorPago, ArrayList<ItemVenda> itensVenda) {
 		this.numero = numero;
 		this.desconto = desconto;
 		this.imposto = imposto;
 		this.valorPago = valorPago;
-		this.itensVenda = new ArrayList<ItemVenda>();
+		this.itensVenda = itensVenda;
 	}
 
 	public int getNumero() {
@@ -30,5 +30,13 @@ public class Venda {
 
 	public float getValorPago() {
 		return valorPago;
+	}
+
+	public String toLineFile() {
+		String str = numero + "," + desconto + "," + imposto + "," + valorPago + ",";
+		for (ItemVenda item : itensVenda) {
+			str += item.toLineFile() + ",";
+		}
+		return str;
 	}
 }

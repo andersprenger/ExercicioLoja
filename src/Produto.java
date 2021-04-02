@@ -1,43 +1,39 @@
+/**
+ * TODO: doc
+ */
 public class Produto {
 	
-	private final ItemEstoque estoque;
 	private int codigo;
 	private String descricao;
-	private double preco;
+	private double precoUnitario;
 
-	public Produto(int codigo, String descricao, double preco, int qtdeEstoque) {
+	public Produto(int codigo, String descricao, double precoUnitario) {
 		this.codigo = codigo;
 		this.descricao = descricao;
-		this.preco = preco;
-		this.estoque = new ItemEstoque(this, qtdeEstoque);
+		this.precoUnitario = precoUnitario;
+	}
+
+	public int getCodigo() {
+		return codigo;
 	}
 
 	public String getDescricao() {
 		return descricao;
 	}
 
-	public double getPreco() {
-		return preco;
+	public double getPrecoUnitario() {
+		return precoUnitario;
 	}
 
-	public void setPreco(double preco) {
-		this.preco = preco;
-	}
-
-	public int getCodigo() {
-		return codigo;
-	}
-	
-	public int getQuantidadeEmEstoque() {
-		return this.estoque.getQuantidade();
-	}
-	
-	public ItemEstoque getEstoqueDoProduto() {
-		return estoque;
+	public void setPrecoUnitario(double precoUnitario) throws RuntimeException {
+		if (precoUnitario >= 0) {
+			this.precoUnitario = precoUnitario;
+		} else {
+			throw new RuntimeException("Preço deve ser maior que 0.");
+		}
 	}
 
 	public String toLineFile() {
-		return codigo + "," + descricao + "," + preco;
+		return codigo + "," + descricao + "," + precoUnitario;
 	}
-
 }

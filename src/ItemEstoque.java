@@ -17,7 +17,7 @@ public class ItemEstoque {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(int quantidade) throws RuntimeException {
         if (quantidade >= 0) {
             this.quantidade = quantidade;
         } else {

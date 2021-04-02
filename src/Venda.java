@@ -35,8 +35,9 @@ public class Venda {
 	public String toLineFile() {
 		String str = numero + "," + desconto + "," + imposto + "," + valorPago + ",";
 		for (ItemVenda item : itensVenda) {
-			str += item.toLineFile() + ",";
+			str += item.toLineFile() + ";";
 		}
+		str.replaceAll(";$","");
 		return str;
 	}
 

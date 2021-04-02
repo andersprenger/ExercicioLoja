@@ -21,7 +21,7 @@ public class ItemEstoque {
         if (quantidade >= 0) {
             this.quantidade = quantidade;
         } else {
-            throw new RuntimeException("Quantidade de item no estoque deve ser maior que 0.");
+            throw new RuntimeException("💩 Quantidade de item no estoque deve ser maior que 0.");
         }
     }
 
@@ -38,7 +38,7 @@ public class ItemEstoque {
         }
     }
 
-    public void incrementaProdutoDoEstoque(int n) {
+    public void incrementaQuantidade(int n) {
         this.quantidade += n;
     }
 
@@ -52,6 +52,6 @@ public class ItemEstoque {
 
     @Override
     public String toString(){
-        return produto + "Quantidade disponível: " + quantidade + "Preço item: " + getPrecoItem();
+        return produto + "\nQuantidade disponível: " + quantidade + " Preço item: " + getPrecoItem();
     }
 }

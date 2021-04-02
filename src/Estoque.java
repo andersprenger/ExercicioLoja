@@ -49,6 +49,7 @@ public class Estoque {
     public void listarEstoque() {
         for (ItemEstoque item : estoque) {
             System.out.println(item);
+            System.out.println();
         }
     }
 
@@ -72,16 +73,19 @@ public class Estoque {
            while (sc.hasNext()){
                String linha = sc.nextLine();
 			   String [] linhaSplitada = linha.split(",");
+
 			   Produto produto = new Produto(
 			           Integer.parseInt(linhaSplitada[0]),
                        linhaSplitada[1],
                        Double.parseDouble(linhaSplitada[2])
-                       );
+               );
+
 			   ItemEstoque item = new ItemEstoque(produto, Integer.parseInt(linhaSplitada[3]));
+
 			   estoque.add(item);
            }
         } catch (IOException x) {
-            System.err.format("Erro de E/S: %s%n", x);
+            System.err.format("🙈 Erro de Input/Output: %s%n", x);
         }
     }
 }

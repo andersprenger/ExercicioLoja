@@ -5,39 +5,113 @@ public class App {
 	private Estoque estoque;
 	private HistoricoVendas historicoVendas;
 	private Scanner scn;
-	private Venda vendaAberta;
 
 	public App(){
 		this.estoque = new Estoque();
 		this.historicoVendas = new HistoricoVendas();
 		this.scn = new Scanner(System.in);
-		this.vendaAberta = null;
 	}
 
 	private void abrirVenda(){
 		final int numeroVenda = historicoVendas.getVendas().size() + 1;
 		ArrayList<ItemVenda> carrinho = new ArrayList<ItemVenda>();
-		System.out.println("Digite no terminal uma opção: 🐒");
-		System.out.println("1) 😎 Ver catalogo de compras"); //listar estoque
-		System.out.println("2) ⭐️ Adicionar item no carrinho");
-		System.out.println("3) 😭 Remover item do carinho");
-		System.out.println("4) 🛒 Ver carrinho");
-		System.out.println("5) 💰 Fechar compra");
+		int porcentagemImposto = 100;
+		int porcentagemDesconto = 0;
 		while (true) {
+			System.out.println();
+			System.out.println("Digite no terminal uma opção: 🐒");
+			System.out.println("1) 🧾 Ver encarte"); //listar estoque
+			System.out.println("2) 🛒 Ver carrinho");
+			System.out.println("3) ⭐️ Adicionar item no carrinho");
+			System.out.println("4) 😭 Remover item do carinho");
+			System.out.println("5) 🤠 Inserir cupom desconto");
+			System.out.println("6) 🤬 Definir imposto:");
+			System.out.println("7) 💰 Fechar compra");
 			int opt = scn.nextInt();
 			switch (opt) {
 				case 1 -> estoque.listarEstoque();
 				case 2 -> {
-					System.out.println("🦊 Digite o código do item a ser colocado no carrinho:");
-					int numeroItem = scn.nextInt();
-					//TODO: continuar isso...
+					for (ItemVenda item : carrinho) {
+						System.out.println(item);
+					}
 				}
+				case 3 -> addItemNoCarrinho(carrinho);
+				case 4 -> removerItemNoCarrinho(carrinho);
 				case 5 -> {
+					System.out.println("Digite o código do cupom no terminal: 🤓");
+					int codigoCupom = scn.nextInt();
+					switch (codigoCupom) {
+						case 40028922 -> {
+							porcentagemDesconto = 20;
+						}
+						default -> System.out.println("Código não encontrado... 😙");
+					}
+				}
+				case 6 -> {
+					System.out.println("🤬 Digite a porcentagem do desconto:");
+					porcentagemDesconto = scn.nextInt();
+				}
+				case 7 -> {
+					float sumTotalPago = 0;
+					for (ItemVenda item : carrinho) {
+						sumTotalPago += item.getTotal();
+					}
+					Venda venda = new Venda(
+							historicoVendas.numeroVendas(),
+							porcentagemDesconto/100,
+							porcentagemImposto/100,
+							sumTotalPago,
+							carrinho
+							);
 					return;
 				}
 				default -> System.out.println("💩 Opção invalida, tente novamente...");
 			}
 		}
+	}
+
+	private void addItemNoCarrinho(ArrayList<ItemVenda> carrinho) {
+		System.out.println("🦊 Digite o código do item a ser colocado no carrinho:");
+		int codigoProduto = scn.nextInt();
+
+		ItemEstoque itemEstoque = estoque.getItem(codigoProduto);
+
+		if (itemEstoque != null && itemEstoque.getQuantidade() > 0) {
+			System.out.println("Digite a quantidade do produto a ser colocado no carrinho:");
+			int quantidadePedido = scn.nextInt();
+
+			if (quantidadePedido > itemEstoque.getQuantidade()) {
+
+				itemEstoque.decrementaProdutoDoEstoque(itemEstoque.getQuantidade());
+				ItemVenda itemVenda = new ItemVenda(itemEstoque.getProduto(), itemEstoque.getQuantidade());
+				carrinho.add(itemVenda);
+
+				System.out.println("😰 Não temos estoque suficiente de " + itemVenda + ".");
+				System.out.println("🦊 Conseguimos colocar " + itemEstoque.getQuantidade() + " itens no carrinho.");
+			} else {
+
+				ItemVenda itemVenda = new ItemVenda(itemEstoque.getProduto(), quantidadePedido);
+				itemEstoque.decrementaProdutoDoEstoque(quantidadePedido);
+
+				System.out.println("🦊 Foram adicionados " + itemEstoque.getQuantidade() + " itens de " + itemVenda.getDescricao() +" no carrinho.");
+			}
+		} else {
+			System.out.println("🙉 Não foi possível colocar no carrinho o item deste código.");
+		}
+	}
+
+	private void removerItemNoCarrinho(ArrayList<ItemVenda> carrinho) {
+		System.out.println("🙈 Digite o código do item que você que tirar do carrinho:");
+		int codigoItemVenda = scn.nextInt();
+		for (ItemVenda busca : carrinho) {
+			if (busca.getCodigo() == codigoItemVenda) {
+				estoque.getItem(codigoItemVenda).incrementaQuantidade(busca.getQuantidade());
+				carrinho.remove(busca);
+				System.out.println("🐒 Item removido do carrinho.");
+				return;
+			}
+		}
+		System.out.println("Item não encontrado. 🙉");
 	}
 
 	private void listarVenda() {

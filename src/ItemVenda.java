@@ -9,6 +9,14 @@ public class ItemVenda {
 		this.quantidade = quantidade;
 		this.precoUnitario = this.produto.getPrecoUnitario();
 	}
+
+	public String getDescricao() {
+		return produto.getDescricao();
+	}
+
+	public int getCodigo() {
+		return produto.getCodigo();
+	}
 	
 	public int getQuantidade() {
 		return this.quantidade;
@@ -43,6 +51,7 @@ public class ItemVenda {
 
 	@Override
 	public String toString() {
-		return produto + "";//usar regex pra cortar o toString do produto
+		return produto.toString().replaceAll("Preço unitário:", "Preço atual:") + " Preço unitário: " + precoUnitario +
+				"\n Quantidade Itens: " + quantidade + " Preço total: " + getTotal();
 	}
 }

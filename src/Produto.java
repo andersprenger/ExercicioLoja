@@ -37,6 +37,7 @@ public class Produto {
 		return codigo + "," + descricao + "," + precoUnitario;
 	}
 
+	@Override
 	public String toString() {
 		return "Código: " + codigo + " Descrição: " + descricao + "Preço unitário: " + precoUnitario;
 	}

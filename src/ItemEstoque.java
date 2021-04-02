@@ -50,6 +50,7 @@ public class ItemEstoque {
         return produto.getPrecoUnitario() * quantidade;
     }
 
+    @Override
     public String toString(){
         return produto + "Quantidade disponível: " + quantidade + "Preço item: " + getPrecoItem();
     }

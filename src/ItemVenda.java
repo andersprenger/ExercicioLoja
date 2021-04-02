@@ -4,9 +4,9 @@ public class ItemVenda {
 	private Produto produto;
 	private double precoUnitario;
 	
-	public ItemVenda(Produto produto, int qtde) {
+	public ItemVenda(Produto produto, int quantidade) {
 		this.produto = produto;
-		this.quantidade = qtde;
+		this.quantidade = quantidade;
 		this.precoUnitario = this.produto.getPrecoUnitario();
 	}
 	
@@ -39,5 +39,10 @@ public class ItemVenda {
 
 	public String toLineFile() {
 		return produto.toLineFile() + "," + quantidade + "," + precoUnitario;
+	}
+
+	@Override
+	public String toString() {
+		return produto + "";//usar regex pra cortar o toString do produto
 	}
 }

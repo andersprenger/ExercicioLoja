@@ -28,9 +28,18 @@ public class Estoque {
 		return estoque.add(item);
 	}
 
-	public ItemEstoque getItem(Produto produto) throws NullPointerException {
+	public ItemEstoque getItem(Produto produto) {
         for (ItemEstoque item : estoque) {
             if (item.getProduto().getCodigo() == produto.getCodigo()) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public ItemEstoque getItem(int codigo) {
+        for (ItemEstoque item : estoque) {
+            if (item.getProduto().getCodigo() == codigo) {
                 return item;
             }
         }
@@ -41,10 +50,6 @@ public class Estoque {
         for (ItemEstoque item : estoque) {
             System.out.println(item);
         }
-    }
-
-    public ItemEstoque getItem(int index) {
-	    return index < estoque.size() ? estoque.get(index) : null;
     }
 
 	public void persiste() {

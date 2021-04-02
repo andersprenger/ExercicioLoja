@@ -39,4 +39,9 @@ public class Venda {
 		}
 		return str;
 	}
+
+	@Override
+	public String toString(){
+		return "";
+	}
 }

@@ -30,7 +30,7 @@ public class App {
 				case 2 -> {
 					System.out.println("🦊 Digite o código do item a ser colocado no carrinho:");
 					int numeroItem = scn.nextInt();
-					//TODO: terminar isso
+					//TODO: continuar isso...
 				}
 				case 5 -> {
 					return;
@@ -40,9 +40,23 @@ public class App {
 		}
 	}
 
-	private void listarVenda(){}
+	private void listarVenda() {
+		System.out.println("🤓 Digite o código da venda a ser listada:");
+		int codigo = scn.nextInt();
+		Venda busca = historicoVendas.buscarVenda(codigo);
+		if (busca != null) {
+			System.out.println(busca);
+		} else {
+			System.out.println("Venda não encontrada... 🙉");
+		}
+	}
 
-	private void listarUltimas5Vendas(){}
+	private void listarUltimas5Vendas(){
+		final int numeroUltimaVenda = historicoVendas.numeroVendas() - 1;
+		for (int index = numeroUltimaVenda; index > numeroUltimaVenda - 5 && index >= 0; index--) {
+			System.out.println(historicoVendas.buscarVenda(index));
+		}
+	}
 
 	public static void main(String[] args) {
 		App app = new App();

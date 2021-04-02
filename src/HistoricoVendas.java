@@ -11,6 +11,10 @@ public class HistoricoVendas {
 		return vendas;
 	}
 
+	public int numeroVendas() {
+		return vendas.size();
+	}
+
 	public Venda buscarVenda(int numero) {
 		for (Venda venda : vendas) {
 			if (venda.getNumero() == numero) {

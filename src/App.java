@@ -2,9 +2,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
-	private Estoque estoque;
-	private HistoricoVendas historicoVendas;
-	private Scanner scn;
+	final private Estoque estoque;
+	final private HistoricoVendas historicoVendas;
+	private final Scanner scn;
 
 	public App(){
 		this.estoque = new Estoque();
@@ -13,7 +13,6 @@ public class App {
 	}
 
 	private void abrirVenda(){
-		final int numeroVenda = historicoVendas.getVendas().size() + 1;
 		ArrayList<ItemVenda> carrinho = new ArrayList<ItemVenda>();
 		int porcentagemImposto = 100;
 		int porcentagemDesconto = 0;
@@ -40,6 +39,7 @@ public class App {
 				case 5 -> {
 					System.out.println("Digite o código do cupom no terminal: 🤓");
 					int codigoCupom = scn.nextInt();
+					//TODO: por mais cods cupons aqui...
 					switch (codigoCupom) {
 						case 40028922 -> {
 							porcentagemDesconto = 20;
@@ -58,11 +58,12 @@ public class App {
 					}
 					Venda venda = new Venda(
 							historicoVendas.numeroVendas(),
-							porcentagemDesconto/100,
-							porcentagemImposto/100,
+							(float)porcentagemDesconto/100,
+							(float)porcentagemImposto/100,
 							sumTotalPago,
 							carrinho
 							);
+					historicoVendas.addVenda(venda);
 					return;
 				}
 				default -> System.out.println("💩 Opção invalida, tente novamente...");

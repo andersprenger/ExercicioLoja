@@ -36,4 +36,8 @@ public class Produto {
 	public String toLineFile() {
 		return codigo + "," + descricao + "," + precoUnitario;
 	}
+
+	public String toString() {
+		return "Código: " + codigo + " Descrição: " + descricao + "Preço unitário: " + precoUnitario;
+	}
 }

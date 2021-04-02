@@ -45,4 +45,12 @@ public class ItemEstoque {
     public String toLineFile() {
         return produto.toLineFile() + "," + quantidade;
     }
+
+    public double getPrecoItem() {
+        return produto.getPrecoUnitario() * quantidade;
+    }
+
+    public String toString(){
+        return produto + "Quantidade disponível: " + quantidade + "Preço item: " + getPrecoItem();
+    }
 }

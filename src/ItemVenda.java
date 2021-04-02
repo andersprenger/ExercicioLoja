@@ -38,6 +38,6 @@ public class ItemVenda {
 	}
 
 	public String toLineFile() {
-		return produto + "," + quantidade + "," + precoUnitario;
+		return produto.toLineFile() + "," + quantidade + "," + precoUnitario;
 	}
 }

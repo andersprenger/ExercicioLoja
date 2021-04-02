@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
@@ -15,7 +16,28 @@ public class App {
 
 	private void abrirVenda(){
 		final int numeroVenda = historicoVendas.getVendas().size() + 1;
-		//TODO: continuar isso aqui
+		ArrayList<ItemVenda> carrinho = new ArrayList<ItemVenda>();
+		System.out.println("Digite no terminal uma opção: 🐒");
+		System.out.println("1) 😎 Ver catalogo de compras"); //listar estoque
+		System.out.println("2) ⭐️ Adicionar item no carrinho");
+		System.out.println("3) 😭 Remover item do carinho");
+		System.out.println("4) 🛒 Ver carrinho");
+		System.out.println("5) 💰 Fechar compra");
+		while (true) {
+			int opt = scn.nextInt();
+			switch (opt) {
+				case 1 -> estoque.listarEstoque();
+				case 2 -> {
+					System.out.println("🦊 Digite o código do item a ser colocado no carrinho:");
+					int numeroItem = scn.nextInt();
+					//TODO: terminar isso
+				}
+				case 5 -> {
+					return;
+				}
+				default -> System.out.println("💩 Opção invalida, tente novamente...");
+			}
+		}
 	}
 
 	private void listarVenda(){}
@@ -36,12 +58,12 @@ public class App {
 				case 1 -> app.abrirVenda();
 				case 2 -> app.listarVenda();
 				case 3 -> app.listarUltimas5Vendas();
-				case 99999 -> app.iniciarEstoque();
+				case -9 -> app.iniciarEstoque();
 				case 0 -> {
 					app.estoque.persiste();
 					return;
 				}
-				default -> System.out.println("Opção invalida, tente novamente...");
+				default -> System.out.println("💩 Opção invalida, tente novamente...");
 			}
 		}
 	}

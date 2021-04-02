@@ -37,6 +37,12 @@ public class Estoque {
         return null;
     }
 
+    public void listarEstoque() {
+        for (ItemEstoque item : estoque) {
+            System.out.println(item);
+        }
+    }
+
     public ItemEstoque getItem(int index) {
 	    return index < estoque.size() ? estoque.get(index) : null;
     }

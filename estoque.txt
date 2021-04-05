@@ -1,0 +1,10 @@
+1,Geladeira Brastemp,1500.0,10
+2,Churrasqueira Controle Remoto Mor,49.0,10
+3,Camera Tecpix,19.0,10
+4,Chip da OI (com credito e bonus),15.0,10
+5,Cyberbug 2076,299.0,10
+6,iPhone 6S 64GB Guerreiro Invicto,750.0,10
+7,Placa de Video GT 710,800.0,10
+8,Playstation 5,5000.0,10
+9,Chevrolet Corsa 94,4900.0,10
+10,Placa de Video RTX 3060ti,6500.0,10
